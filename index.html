@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Gabriela Kaufmann · Portfólio</title>
+  <meta name="description" content="Gabriela Kaufmann — Videomaker, Editora de Vídeo e Fotógrafa. Captação, edição dinâmica e fotografia com olhar estratégico." />
+  <meta name="theme-color" content="#0F2557" />
+  <meta property="og:title" content="Gabriela Kaufmann · Portfólio" />
+  <meta property="og:description" content="Vídeo • Fotografia • Design Gráfico" />
+  <meta property="og:type" content="website" />
+
+  <!-- Fontes: Fraunces (títulos), Plus Jakarta Sans (texto), Space Mono (dados técnicos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Space Mono"', 'ui-monospace', 'monospace']
+          },
+          colors: {
+            bp: { navy: '#0F2557', deep: '#0B192C' },
+            mustard: '#F4C430',
+            rec: '#FF3B30',
+            ice: '#E2E8F0'
+          },
+          transitionTimingFunction: { expo: 'cubic-bezier(0.16, 1, 0.3, 1)' }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --navy: #0F2557; --deep: #0B192C; --mustard: #F4C430; --rec: #FF3B30; --ice: #E2E8F0;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --mx: -999px; --my: -999px;
+      --hud: 16px;
+    }
+    @media (min-width: 768px) { :root { --hud: 24px; } }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body { background: var(--navy); color: var(--ice); -webkit-font-smoothing: antialiased; }
+    ::selection { background: var(--mustard); color: var(--deep); }
+
+    /* ============ FUNDO BLUEPRINT (grade milimetrada em CSS puro) ============ */
+    .bp-grid {
+      position: fixed; inset: 0; z-index: -3; background-color: var(--navy);
+      background-image:
+        linear-gradient(rgba(255,255,255,.09) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.09) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 200px 200px, 200px 200px, 40px 40px, 40px 40px;
+    }
+    .bp-vignette { position: fixed; inset: 0; z-index: -2; pointer-events: none;
+      background: radial-gradient(ellipse at 50% 40%, transparent 35%, rgba(11,25,44,.75) 100%); }
+    /* Sinais "+" nos cruzamentos de 200px */
+    .bp-plus, .bp-plus-glow {
+      position: fixed; inset: 0; z-index: -2; pointer-events: none;
+      background-size: 200px 200px; background-position: -100px -100px;
+    }
+    .bp-plus { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M100 93v14M93 100h14' stroke='%23fff' stroke-opacity='.25' stroke-width='1'/%3E%3C/svg%3E"); }
+    .bp-plus-glow {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cpath d='M100 90v20M90 100h20' stroke='%23F4C430' stroke-width='1.5'/%3E%3C/svg%3E");
+      -webkit-mask-image: radial-gradient(220px circle at var(--mx) var(--my), #000 0%, transparent 100%);
+              mask-image: radial-gradient(220px circle at var(--mx) var(--my), #000 0%, transparent 100%);
+      filter: drop-shadow(0 0 4px rgba(244,196,48,.8));
+    }
+
+    /* ============ HUD DO VISOR ============ */
+    .hud { position: fixed; inset: 0; z-index: 40; pointer-events: none; }
+    .crop { position: absolute; width: 22px; height: 22px; border-color: rgba(255,255,255,.75); }
+    @media (min-width: 768px) { .crop { width: 34px; height: 34px; } }
+    .crop.tl { top: var(--hud); left: var(--hud); border-top: 1px solid; border-left: 1px solid; }
+    .crop.tr { top: var(--hud); right: var(--hud); border-top: 1px solid; border-right: 1px solid; }
+    .crop.bl { bottom: var(--hud); left: var(--hud); border-bottom: 1px solid; border-left: 1px solid; }
+    .crop.br { bottom: var(--hud); right: var(--hud); border-bottom: 1px solid; border-right: 1px solid; }
+    .hud-tl { position: absolute; top: calc(var(--hud) + 6px); left: calc(var(--hud) + 12px); }
+    .hud-tr { position: absolute; top: calc(var(--hud) + 6px); right: calc(var(--hud) + 12px); }
+    .rec-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rec); box-shadow: 0 0 10px var(--rec); animation: rec 1.6s ease-in-out infinite; }
+    @keyframes rec { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
+
+    /* Retícula que segue o mouse */
+    .reticle { position: fixed; left: 0; top: 0; z-index: 45; pointer-events: none; opacity: 0; transition: opacity .4s var(--ease); will-change: transform; }
+    .reticle.on { opacity: 1; }
+    @media (hover: none), (pointer: coarse) { .reticle { display: none; } }
+
+    /* Navegação inferior (estilo menu da câmera) */
+    .hud-nav a { position: relative; transition: color .3s var(--ease); }
+    .hud-nav a::before, .hud-nav a::after { opacity: 0; transition: opacity .3s var(--ease), transform .3s var(--ease); color: var(--mustard); }
+    .hud-nav a::before { content: '['; margin-right: 4px; display: inline-block; transform: translateX(4px); }
+    .hud-nav a::after  { content: ']'; margin-left: 4px; display: inline-block; transform: translateX(-4px); }
+    .hud-nav a:hover, .hud-nav a.active { color: #fff; }
+    .hud-nav a:hover::before, .hud-nav a:hover::after, .hud-nav a.active::before, .hud-nav a.active::after { opacity: 1; transform: none; }
+    @media (max-width: 420px) { .hud-nav a::before, .hud-nav a::after { display: none; } }
+
+    /* ============ HERO: anel e diagrama ============ */
+    .ring-draw { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 2.2s var(--ease) .35s forwards; }
+    .ring-front { animation-delay: 1.05s; animation-duration: 1.4s; }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    .lens-draw { stroke-dasharray: 1; stroke-dashoffset: 1; }
+    .title-dot { color: var(--mustard); }
+
+    /* ============ ENTRADA AO ROLAR ============ */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+    .reveal.is-visible { opacity: 1; transform: none; }
+
+    /* ============ BOTÕES (clique "mecânico") ============ */
+    .btn { transition: transform .25s var(--ease), background-color .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease); }
+    .btn:active { transform: scale(.95); transition-duration: .06s; }
+
+    .filter-btn { transition: color .3s var(--ease), background-color .3s var(--ease), border-color .3s var(--ease), transform .2s var(--ease); }
+    .filter-btn:active { transform: scale(.94); }
+    .filter-btn[aria-pressed="true"] { background: var(--mustard); color: var(--deep); border-color: var(--mustard); }
+
+    /* ============ GALERIA (contact sheet) ============ */
+    .gallery { display: grid; grid-template-columns: 1fr; gap: 32px 20px; }
+    @media (min-width: 640px) { .gallery { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .gallery { grid-template-columns: repeat(3, 1fr); gap: 40px 24px; } }
+    .card { display: block; width: 100%; text-align: left; }
+    .card.is-hidden { display: none; }
+    .frame { position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.2); background: var(--deep); }
+    .frame img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.55) contrast(1.05) brightness(.9); transition: filter .8s var(--ease), transform 1.2s var(--ease); }
+    .frame .tint { position: absolute; inset: 0; background: #1d4ed8; mix-blend-mode: color; opacity: .35; transition: opacity .8s var(--ease); }
+    .focus { position: absolute; width: 22px; height: 22px; border-color: var(--mustard); opacity: 0; transition: all .55s var(--ease); }
+    .focus.tl { top: 22px; left: 22px; border-top: 2px solid; border-left: 2px solid; }
+    .focus.tr { top: 22px; right: 22px; border-top: 2px solid; border-right: 2px solid; }
+    .focus.bl { bottom: 44px; left: 22px; border-bottom: 2px solid; border-left: 2px solid; }
+    .focus.br { bottom: 44px; right: 22px; border-bottom: 2px solid; border-right: 2px solid; }
+    .meta { position: absolute; left: 0; right: 0; bottom: 0; transform: translateY(100%); transition: transform .55s var(--ease); background: rgba(11,25,44,.88); backdrop-filter: blur(6px); }
+    .card:hover .frame img, .card:focus-visible .frame img { filter: none; transform: scale(1.035); }
+    .card:hover .tint, .card:focus-visible .tint { opacity: 0; }
+    .card:hover .focus, .card:focus-visible .focus { opacity: 1; }
+    .card:hover .focus.tl, .card:focus-visible .focus.tl { top: 12px; left: 12px; }
+    .card:hover .focus.tr, .card:focus-visible .focus.tr { top: 12px; right: 12px; }
+    .card:hover .focus.bl, .card:focus-visible .focus.bl { bottom: 40px; left: 12px; }
+    .card:hover .focus.br, .card:focus-visible .focus.br { bottom: 40px; right: 12px; }
+    .card:hover .meta, .card:focus-visible .meta { transform: none; }
+    .card:focus-visible { outline: none; }
+    /* No celular (sem hover) a barra de metadados fica sempre visível */
+    @media (hover: none) {
+      .meta { transform: none; }
+      .frame img { filter: saturate(.8); }
+      .frame .tint { opacity: .15; }
+    }
+
+    /* Flash do obturador ao abrir um projeto */
+    .shutter { position: fixed; inset: 0; z-index: 70; background: #fff; opacity: 0; pointer-events: none; }
+    .shutter.fire { animation: shutter .28s ease-out; }
+    @keyframes shutter { 0% { opacity: .22; } 100% { opacity: 0; } }
+
+    /* ============ MODAL (monitor de referência) ============ */
+    .modal { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center; padding: 16px;
+             background: rgba(11,25,44,.92); backdrop-filter: blur(10px); opacity: 0; visibility: hidden; transition: opacity .5s var(--ease), visibility .5s; }
+    .modal.open { opacity: 1; visibility: visible; }
+    .monitor { transform: scale(.96) translateY(12px); transition: transform .6s var(--ease); }
+    .modal.open .monitor { transform: none; }
+
+    /* ============ CLAQUETE ============ */
+    .stripes { background: repeating-linear-gradient(-55deg, var(--mustard) 0 26px, var(--deep) 26px 52px, #E2E8F0 52px 78px, var(--deep) 78px 104px); }
+    .clap-arm { transform-origin: 0% 100%; transform: rotate(-4deg); transition: transform .5s var(--ease); }
+    .clapper:hover .clap-arm { transform: rotate(-6.5deg); }
+    .clap-arm.snap { animation: snap .55s var(--ease); }
+    @keyframes snap { 0% { transform: rotate(-6.5deg); } 22% { transform: rotate(0deg); } 30% { transform: rotate(-.8deg); } 38% { transform: rotate(0deg); } 100% { transform: rotate(-4deg); } }
+
+    .dotted { background-image: linear-gradient(90deg, rgba(255,255,255,.25) 1px, transparent 1px); background-size: 6px 1px; background-repeat: repeat-x; background-position: 0 85%; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .ring-draw, .lens-draw { animation: none; stroke-dashoffset: 0 !important; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .rec-dot { animation: none; }
+      .reticle { display: none; }
+    }
+  </style>
+</head>
+
+<body class="font-sans overflow-x-hidden">
+
+  <!-- Fundo blueprint -->
+  <div class="bp-grid" aria-hidden="true"></div>
+  <div class="bp-plus" aria-hidden="true"></div>
+  <div class="bp-plus-glow" aria-hidden="true"></div>
+  <div class="bp-vignette" aria-hidden="true"></div>
+  <div class="shutter" id="shutter" aria-hidden="true"></div>
+
+  <!-- ===================== HUD FIXO DO VISOR ===================== -->
+  <div class="hud font-mono" aria-hidden="true">
+    <span class="crop tl"></span><span class="crop tr"></span><span class="crop bl"></span><span class="crop br"></span>
+
+    <div class="hud-tl flex items-center gap-2 text-[10px] md:text-xs tracking-widest text-white">
+      <span class="rec-dot"></span>
+      <span class="font-bold">REC</span>
+      <span id="timecode" class="text-ice/80 tabular-nums">00:00:00:00</span>
+    </div>
+
+    <div class="hud-tr text-[10px] md:text-xs tracking-widest text-ice/80">
+      <span class="hidden md:inline">24 FPS • 4K RAW • ISO 800 • 16:9</span>
+      <span class="md:hidden">4K • 24FPS</span>
+    </div>
+  </div>
+
+  <!-- Retícula do cursor (só desktop) -->
+  <div class="reticle font-mono" id="reticle" aria-hidden="true">
+    <svg width="34" height="34" viewBox="0 0 34 34" class="-translate-x-1/2 -translate-y-1/2" style="position:absolute">
+      <path d="M17 4v9M17 21v9M4 17h9M21 17h9" stroke="#F4C430" stroke-width="1"/>
+      <circle cx="17" cy="17" r="1.5" fill="#F4C430"/>
+    </svg>
+    <span id="coords" class="absolute left-5 top-4 whitespace-nowrap text-[10px] tracking-wider text-mustard/90">X 0000 / Y 0000</span>
+  </div>
+
+  <!-- Navegação inferior -->
+  <nav class="hud-nav fixed bottom-[calc(var(--hud)+10px)] left-1/2 -translate-x-1/2 z-50 font-mono text-[11px] md:text-xs uppercase tracking-widest">
+    <ul class="flex items-center gap-3 sm:gap-5 rounded-full border border-white/20 bg-bp-deep/75 backdrop-blur-md px-4 sm:px-6 py-2.5 text-ice/70 whitespace-nowrap">
+      <li><a href="#portfolio">Projetos</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contato">Contato</a></li>
+      <!-- EDITAR AQUI: link do Behance -->
+      <li><a href="https://www.behance.net/gabrielkaufman" target="_blank" rel="noopener" class="!text-mustard">Behance ↗</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- ===================== 1. HERO (capa editorial) ===================== -->
+    <section id="inicio" class="relative min-h-[100svh] flex items-center justify-center overflow-hidden px-6 pt-24 pb-32">
+
+      <!-- Diagrama técnico: corte de lente objetiva (desenha conforme o scroll) -->
+      <svg id="lens" class="pointer-events-none absolute right-[-18%] bottom-[4%] w-[min(640px,110vw)] opacity-[.12] lg:right-[-2%] lg:bottom-[6%] lg:opacity-[.16]" viewBox="0 0 640 300" fill="none" stroke="#fff" stroke-width="1" aria-hidden="true">
+        <path class="lens-draw" pathLength="1" d="M0 150H640" stroke-opacity=".5"/>
+        <path class="lens-draw" pathLength="1" d="M130 60H430V240H130Z"/>
+        <path class="lens-draw" pathLength="1" d="M430 90H490V210H430"/>
+        <path class="lens-draw" pathLength="1" d="M180 68Q214 150 180 232Q146 150 180 68Z"/>
+        <path class="lens-draw" pathLength="1" d="M252 84Q284 150 252 216Q268 150 252 84Z"/>
+        <path class="lens-draw" pathLength="1" d="M330 94Q354 150 330 206Q306 150 330 94Z"/>
+        <path class="lens-draw" pathLength="1" d="M404 104Q420 150 404 196Q392 150 404 104Z"/>
+        <path class="lens-draw" pathLength="1" d="M0 92H180L590 150" stroke-opacity=".6"/>
+        <path class="lens-draw" pathLength="1" d="M0 208H180L590 150" stroke-opacity=".6"/>
+        <path class="lens-draw" pathLength="1" d="M0 122H180L590 150" stroke-opacity=".35"/>
+        <path class="lens-draw" pathLength="1" d="M0 178H180L590 150" stroke-opacity=".35"/>
+        <path class="lens-draw" pathLength="1" d="M590 95V205" stroke="#F4C430"/>
+        <path class="lens-draw" pathLength="1" d="M130 268H490M130 262V274M490 262V274"/>
+        <circle cx="590" cy="150" r="3.5" fill="#F4C430" stroke="none"/>
+        <g font-family="Space Mono, monospace" font-size="10" fill="#fff" stroke="none" fill-opacity=".8">
+          <text x="140" y="52">OBJ. 35MM</text>
+          <text x="300" y="52">f/1.4</text>
+          <text x="560" y="86">SENSOR</text>
+          <text x="262" y="290">L = 82.4 MM</text>
+        </g>
+      </svg>
+
+      <!-- Sombra suave atrás do texto para dar leitura -->
+      <div aria-hidden="true" class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[min(1100px,140vw)] h-[70%] rounded-full bg-bp-deep/55 blur-3xl"></div>
+
+      <div class="relative z-10 text-center">
+        <p class="reveal font-mono text-[11px] md:text-xs uppercase tracking-[.3em] text-ice/70">Rolo 01 — Cena 01 — Take 01</p>
+
+        <!-- Título com anel elíptico (parte atrás, parte na frente das letras) -->
+        <div class="relative inline-block mt-6 md:mt-8">
+          <svg class="pointer-events-none absolute left-1/2 top-1/2 w-[118%] -translate-x-1/2 -translate-y-1/2 overflow-visible" viewBox="0 0 1000 400" fill="none" aria-hidden="true" style="z-index:0">
+            <g transform="rotate(-22 500 200)">
+              <ellipse class="ring-draw" pathLength="1" cx="500" cy="200" rx="480" ry="92" stroke="#F4C430" stroke-width="2.2"/>
+            </g>
+          </svg>
+          <h1 class="relative font-display font-black text-white leading-[.9] tracking-[-0.035em] text-[clamp(4.2rem,19vw,14rem)]" style="z-index:1; font-variation-settings:'opsz' 144;">
+            Portfólio<span class="title-dot">.</span>
+          </h1>
+          <svg class="pointer-events-none absolute left-1/2 top-1/2 w-[118%] -translate-x-1/2 -translate-y-1/2 overflow-visible" viewBox="0 0 1000 400" fill="none" aria-hidden="true" style="z-index:2">
+            <g transform="rotate(-22 500 200)">
+              <path class="ring-draw ring-front" pathLength="1" d="M935 240.6A480 92 0 0 1 297.1 283.4" stroke="#F4C430" stroke-width="2.2"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="reveal mx-auto mt-8 md:mt-10 h-px w-[min(520px,80vw)] bg-white/70"></div>
+
+        <p class="reveal mt-6 font-mono text-[11px] sm:text-xs md:text-sm uppercase tracking-[.12em] sm:tracking-[.25em] text-white whitespace-nowrap">
+          Vídeo <span class="text-mustard">•</span> Fotografia <span class="text-mustard">•</span> Design Gráfico
+        </p>
+        <p class="reveal mt-3 font-display italic text-lg md:text-2xl text-ice">
+          Gabriela Kaufmann — <span class="font-mono not-italic text-sm md:text-base text-ice/70">©2026</span>
+        </p>
+
+        <div class="reveal mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 font-mono text-xs uppercase tracking-widest">
+          <a href="https://www.behance.net/gabrielkaufman" target="_blank" rel="noopener"
+             class="btn inline-flex items-center justify-center gap-2 bg-white text-bp-deep px-6 py-3.5 font-bold hover:bg-mustard">
+            [ Ver projetos no Behance ↗ ]
+          </a>
+          <!-- EDITAR AQUI: número do WhatsApp (55 + DDD + número, só dígitos) -->
+          <a href="https://api.whatsapp.com/send/?phone=5547997722338&amp;text&amp;type=phone_number&amp;app_absent=0" target="_blank" rel="noopener"
+             class="btn inline-flex items-center justify-center gap-2 border border-white/40 text-white px-6 py-3.5 font-bold hover:border-mustard hover:text-mustard">
+            [ Solicitar orçamento ]
+          </a>
+        </div>
+      </div>
+
+      <a href="#portfolio" class="absolute bottom-[calc(var(--hud)+64px)] left-1/2 -translate-x-1/2 font-mono text-[10px] tracking-[.3em] text-ice/50 hover:text-mustard transition-colors hidden md:block">ROLE ↓</a>
+    </section>
+
+    <!-- ===================== 2. VITRINE DE PROJETOS ===================== -->
+    <section id="portfolio" class="relative py-20 md:py-28">
+      <div class="mx-auto max-w-6xl px-6 md:px-10">
+        <div class="reveal flex items-center gap-4 font-mono text-[11px] uppercase tracking-[.3em] text-mustard">
+          <span>02</span><span class="h-px flex-1 max-w-[120px] bg-mustard/60"></span><span class="text-ice/70">Galeria técnica</span>
+        </div>
+        <div class="mt-5 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+          <h2 class="reveal font-display font-black text-white text-5xl md:text-7xl tracking-tight leading-[.95]">Projetos<br class="hidden md:block" /> selecionados<span class="title-dot">.</span></h2>
+
+          <div class="reveal flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-widest" role="group" aria-label="Filtrar projetos">
+            <button class="filter-btn border border-white/25 px-3 py-2 text-white hover:border-mustard" data-filter="todos" aria-pressed="true">[ Todos ]</button>
+            <button class="filter-btn border border-white/25 px-3 py-2 text-white hover:border-mustard" data-filter="video" aria-pressed="false">[ Vídeo ]</button>
+            <button class="filter-btn border border-white/25 px-3 py-2 text-white hover:border-mustard" data-filter="fotografia" aria-pressed="false">[ Fotografia ]</button>
+            <button class="filter-btn border border-white/25 px-3 py-2 text-white hover:border-mustard" data-filter="design" aria-pressed="false">[ Design ]</button>
+          </div>
+        </div>
+
+        <!-- Os cards são gerados pela lista PROJETOS no fim do arquivo (procure "EDITAR AQUI: projetos") -->
+        <div id="gallery" class="gallery mt-12"></div>
+
+        <div class="reveal mt-14 text-center">
+          <a href="https://www.behance.net/gabrielkaufman" target="_blank" rel="noopener"
+             class="btn inline-flex items-center gap-2 border border-white/40 px-6 py-3.5 font-mono text-xs uppercase tracking-widest font-bold text-white hover:bg-mustard hover:text-bp-deep hover:border-mustard">
+            [ Explorar portfólio completo no Behance ↗ ]
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 3. SOBRE & FICHA TÉCNICA ===================== -->
+    <section id="sobre" class="relative py-20 md:py-28">
+      <div class="mx-auto max-w-6xl px-6 md:px-10">
+        <div class="reveal flex items-center gap-4 font-mono text-[11px] uppercase tracking-[.3em] text-mustard">
+          <span>03</span><span class="h-px flex-1 max-w-[120px] bg-mustard/60"></span><span class="text-ice/70">Sobre & setup</span>
+        </div>
+
+        <div class="mt-10 grid gap-14 lg:grid-cols-[1.1fr_.9fr] lg:gap-20">
+          <!-- Esquerda: bio editorial -->
+          <div>
+            <div class="reveal grid grid-cols-[140px_minmax(0,1fr)] sm:grid-cols-[220px_minmax(0,1fr)] items-end gap-5 sm:gap-7">
+              <!-- EDITAR AQUI: foto da Gabi (arquivo em img/gabriela.jpg).
+                   Para ajustar o enquadramento, mude o "object-position" (horizontal% vertical%). -->
+              <figure class="relative p-2 max-w-[220px]">
+                <span class="absolute left-0 top-0 w-5 h-5 border-t border-l border-mustard"></span>
+                <span class="absolute right-0 top-0 w-5 h-5 border-t border-r border-mustard"></span>
+                <span class="absolute left-0 bottom-0 w-5 h-5 border-b border-l border-mustard"></span>
+                <span class="absolute right-0 bottom-0 w-5 h-5 border-b border-r border-mustard"></span>
+                <div class="relative aspect-[4/5] overflow-hidden border border-white/15">
+                  <img src="img/gabriela.jpg" alt="Gabriela Kaufmann em foto preto e branco, à noite" class="w-full h-full object-cover" style="object-position: 62% 30%; transform: scale(1.55); transform-origin: 52% 30%;" width="220" height="275" />
+                  <span class="absolute left-2 top-2 inline-flex items-center gap-1.5 font-mono text-[9px] tracking-widest text-white bg-bp-deep/70 px-1.5 py-0.5"><span class="rec-dot !w-1.5 !h-1.5"></span>REC</span>
+                </div>
+                <figcaption class="mt-2 font-mono text-[9px] uppercase tracking-widest text-ice/50">Frame 001 · P&amp;B · Noite</figcaption>
+              </figure>
+              <div class="font-mono text-[11px] uppercase tracking-widest leading-relaxed text-ice/70 pb-7">
+                <p class="text-white">Gabriela Kaufmann</p>
+                <p>Videomaker · Editora · Fotógrafa</p>
+                <p class="mt-1 inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Disponível para projetos</p>
+              </div>
+            </div>
+
+            <!-- EDITAR AQUI: texto de apresentação -->
+            <h3 class="reveal mt-10 font-display font-black text-5xl md:text-7xl leading-[.95] text-white tracking-tight">
+              Oi! Eu sou a <em class="text-mustard">Gabi</em><span class="title-dot">.</span>
+            </h3>
+            <p class="reveal mt-6 font-display text-2xl md:text-3xl leading-snug text-white tracking-tight max-w-xl">
+              Tenho 24 anos e sou formada em Publicidade e Propaganda.
+            </p>
+            <p class="reveal mt-5 text-base md:text-lg leading-relaxed text-ice/85 max-w-xl">
+              Desde pequena sou apaixonada pelo mundo do audiovisual e tô sempre andando com
+              <span class="font-display italic text-white">uma câmera na mão</span>, registrando momentos.
+            </p>
+          </div>
+
+          <!-- Direita: ficha técnica -->
+          <!-- EDITAR AQUI: áreas, softwares e equipamentos (os equipamentos são exemplos, troque pelos reais) -->
+          <div id="especialidades" class="reveal relative border border-white/20 bg-bp-deep/40 backdrop-blur-sm p-6 md:p-8">
+            <div class="absolute -top-3 left-6 bg-bp-navy px-2 font-mono text-[11px] uppercase tracking-[.3em] text-mustard">Ficha técnica</div>
+
+            <dl class="font-mono text-xs md:text-[13px] uppercase tracking-wider">
+              <div class="pb-6">
+                <dt class="text-mustard/90 text-[10px] tracking-[.3em]">01 / Áreas</dt>
+                <dd class="mt-3 space-y-2.5 text-ice">
+                  <p class="flex gap-3"><span class="dotted flex-1 order-2"></span><span class="order-1 text-white">Edição de vídeo</span><span class="order-3 text-ice/60">Reels · Comercial · Color</span></p>
+                  <p class="flex gap-3"><span class="dotted flex-1 order-2"></span><span class="order-1 text-white">Filmagem</span><span class="order-3 text-ice/60">Marcas · Eventos</span></p>
+                  <p class="flex gap-3"><span class="dotted flex-1 order-2"></span><span class="order-1 text-white">Fotografia</span><span class="order-3 text-ice/60">Ensaios · Eventos</span></p>
+                  <p class="flex gap-3"><span class="dotted flex-1 order-2"></span><span class="order-1 text-ice/80">Design gráfico</span><span class="order-3 text-ice/50">Complementar</span></p>
+                </dd>
+              </div>
+              <div class="py-6 border-t border-white/10">
+                <dt class="text-mustard/90 text-[10px] tracking-[.3em]">02 / Software</dt>
+                <dd class="mt-3 flex flex-wrap gap-2 text-white">
+                  <span class="border border-white/20 px-2.5 py-1">Premiere Pro</span>
+                  <span class="border border-white/20 px-2.5 py-1">Lightroom</span>
+                  <span class="border border-white/20 px-2.5 py-1">Photoshop</span>
+                  <span class="border border-white/20 px-2.5 py-1">Illustrator</span>
+                </dd>
+              </div>
+              <div class="pt-6 border-t border-white/10">
+                <dt class="text-mustard/90 text-[10px] tracking-[.3em]">03 / Equipamento</dt>
+                <dd class="mt-3 space-y-2.5 text-ice">
+                  <p class="flex gap-3"><span class="text-ice/60 w-14 shrink-0">CAM</span><span class="text-white">Sony FX3 · Sony A7 IV</span></p>
+                  <p class="flex gap-3"><span class="text-ice/60 w-14 shrink-0">LENTES</span><span class="text-white">35mm f/1.4 · 24–70mm f/2.8</span></p>
+                  <p class="flex gap-3"><span class="text-ice/60 w-14 shrink-0">LUZ</span><span class="text-white">LED bicolor · Softbox</span></p>
+                  <p class="flex gap-3"><span class="text-ice/60 w-14 shrink-0">ÁUDIO</span><span class="text-white">Lapela sem fio · Shotgun</span></p>
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 4. CONTATO (claquete) ===================== -->
+    <section id="contato" class="relative py-20 md:py-28">
+      <div class="mx-auto max-w-5xl px-6 md:px-10">
+        <div class="reveal flex items-center gap-4 font-mono text-[11px] uppercase tracking-[.3em] text-mustard">
+          <span>04</span><span class="h-px flex-1 max-w-[120px] bg-mustard/60"></span><span class="text-ice/70">Contato</span>
+        </div>
+
+        <div id="clapper" class="clapper reveal mt-16 md:mt-20">
+          <!-- Braço superior (abre e "bate") -->
+          <div class="clap-arm stripes h-9 md:h-12 border border-white/30"></div>
+          <div class="stripes h-9 md:h-12 border-x border-white/30 [background-position:52px_0]"></div>
+
+          <!-- Corpo da claquete -->
+          <div class="border border-white/30 bg-bp-deep/70 backdrop-blur-sm">
+            <div class="grid grid-cols-2 md:grid-cols-4 font-mono text-[10px] md:text-[11px] uppercase tracking-widest">
+              <div class="border-b border-r border-white/15 p-3 md:p-4"><p class="text-ice/50">Prod.</p><p class="mt-1 text-white">Seu projeto</p></div>
+              <div class="border-b md:border-r border-white/15 p-3 md:p-4"><p class="text-ice/50">Direção</p><p class="mt-1 text-white">G. Kaufmann</p></div>
+              <div class="border-b border-r border-white/15 p-3 md:p-4"><p class="text-ice/50">Cena / Take</p><p class="mt-1 text-white">04 / 01</p></div>
+              <div class="border-b border-white/15 p-3 md:p-4"><p class="text-ice/50">Data</p><p id="slateDate" class="mt-1 text-white">--/--/2026</p></div>
+            </div>
+
+            <div class="px-6 py-10 md:px-12 md:py-14 text-center">
+              <h2 class="font-display font-black text-white text-4xl md:text-6xl leading-[1.02] tracking-tight">
+                Tem um projeto em mente?<br /><em class="font-bold text-mustard">Vamos tirar do papel.</em>
+              </h2>
+              <p class="mt-5 text-ice/80 max-w-md mx-auto">Conte sua ideia e receba uma proposta sob medida.</p>
+
+              <!-- EDITAR AQUI: WhatsApp, e-mail, Behance e Instagram -->
+              <div class="mt-10 grid grid-cols-2 md:grid-cols-5 gap-2.5 font-mono text-[11px] uppercase tracking-widest whitespace-nowrap">
+                <a href="https://api.whatsapp.com/send/?phone=5547997722338&amp;text&amp;type=phone_number&amp;app_absent=0" target="_blank" rel="noopener"
+                   class="btn col-span-2 md:col-span-1 flex items-center justify-center gap-2 bg-mustard text-bp-deep font-bold px-3 py-4 hover:bg-white">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4C2.7 15.6 2.2 13.8 2.2 12 2.2 6.6 6.6 2.2 12 2.2c2.6 0 5.1 1 6.9 2.9 1.8 1.8 2.9 4.3 2.9 6.9 0 5.4-4.4 9.8-9.8 9.8zM20.5 3.5C18.2 1.2 15.2 0 12 0 5.4 0 0 5.4 0 12c0 2.1.6 4.2 1.6 6L0 24l6.2-1.6c1.8 1 3.8 1.5 5.8 1.5 6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.5-8.4z"/></svg>
+                  WhatsApp
+                </a>
+                <a href="https://www.behance.net/gabrielkaufman" target="_blank" rel="noopener"
+                   class="btn flex items-center justify-center gap-2 border border-white/25 text-white px-3 py-4 hover:border-mustard hover:text-mustard">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8.2 11.3c.9-.4 1.5-1.2 1.5-2.4C9.7 6.7 8 6 6 6H1v12h5.2c2.1 0 4.1-1 4.1-3.4 0-1.5-.7-2.8-2.1-3.3zM3.3 8h2.2c.8 0 1.6.2 1.6 1.2 0 .9-.6 1.3-1.4 1.3H3.3V8zm2.4 8H3.3v-3.3h2.5c1 0 1.7.4 1.7 1.6 0 1.2-.8 1.700-1.8 1.7zM15.3 7h5.4v1.3h-5.4zM18.1 9.6c-2.6 0-4.3 2-4.3 4.5 0 2.6 1.6 4.4 4.3 4.4 2 0 3.3-.9 3.9-2.8h-2c-.2.7-1.1 1.1-1.8 1.1-1.3 0-2.1-.8-2.1-2.1h6c.1-2.7-1.3-5.1-4-5.1zm-2 3.8c.1-1.1.8-1.8 1.9-1.8 1.1 0 1.700.7 1.800 1.8h-3.700z"/></svg>
+                  Behance
+                </a>
+                <a href="https://www.linkedin.com/in/gabriela-kaufmann/" target="_blank" rel="noopener"
+                   class="btn flex items-center justify-center gap-2 border border-white/25 text-white px-3 py-4 hover:border-mustard hover:text-mustard">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+                  LinkedIn
+                </a>
+                <a href="https://www.instagram.com/ggabrielakaufmann/" target="_blank" rel="noopener"
+                   class="btn flex items-center justify-center gap-2 border border-white/25 text-white px-3 py-4 hover:border-mustard hover:text-mustard">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+                  Instagram
+                </a>
+                <a href="https://www.tiktok.com/@gabizzzlife" target="_blank" rel="noopener"
+                   class="btn flex items-center justify-center gap-2 border border-white/25 text-white px-3 py-4 hover:border-mustard hover:text-mustard">
+                  <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 6.7a4.8 4.8 0 0 1-3.8-4.2V2h-3.4v13.6a2.9 2.9 0 1 1-2-2.7V9.4a6.3 6.3 0 1 0 5.4 6.2V8.7a8.2 8.2 0 0 0 3.8 1V6.7z"/></svg>
+                  TikTok
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pb-28 md:pb-32 pt-6">
+    <div class="mx-auto max-w-6xl px-6 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-[11px] uppercase tracking-widest text-ice/50">
+      <p>© 2026 Gabriela Kaufmann. Todos os direitos reservados.</p>
+      <p>Fim do rolo <span class="text-mustard">■</span></p>
+    </div>
+  </footer>
+
+  <!-- ===================== MODAL: MONITOR DE REFERÊNCIA ===================== -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <div class="monitor relative w-full max-w-5xl max-h-[92svh] overflow-y-auto border border-white/25 bg-bp-deep">
+      <div class="flex items-center justify-between gap-3 border-b border-white/15 px-4 py-3 font-mono text-[10px] md:text-[11px] uppercase tracking-widest">
+        <span class="flex items-center gap-2 text-ice/70"><span class="rec-dot"></span>Monitor ref. · <span id="mCat" class="text-mustard"></span></span>
+        <button id="mClose" class="btn text-white hover:text-mustard" aria-label="Fechar">[ Esc · Fechar ]</button>
+      </div>
+
+      <div class="relative bg-black/40">
+        <div id="mMedia" class="flex items-center justify-center min-h-[200px]"></div>
+        <span class="pointer-events-none absolute left-3 top-3 w-5 h-5 border-t border-l border-white/70"></span>
+        <span class="pointer-events-none absolute right-3 top-3 w-5 h-5 border-t border-r border-white/70"></span>
+        <span class="pointer-events-none absolute left-3 bottom-3 w-5 h-5 border-b border-l border-white/70"></span>
+        <span class="pointer-events-none absolute right-3 bottom-3 w-5 h-5 border-b border-r border-white/70"></span>
+        <button id="mPrev" class="btn absolute left-4 top-1/2 -translate-y-1/2 font-mono text-white bg-bp-deep/70 border border-white/25 w-10 h-10 hover:text-mustard hover:border-mustard" aria-label="Anterior">‹</button>
+        <button id="mNext" class="btn absolute right-4 top-1/2 -translate-y-1/2 font-mono text-white bg-bp-deep/70 border border-white/25 w-10 h-10 hover:text-mustard hover:border-mustard" aria-label="Próximo">›</button>
+        <span id="mCounter" class="absolute right-4 bottom-4 font-mono text-[10px] tracking-widest text-white/80 bg-bp-deep/70 px-2 py-1"></span>
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-[1.3fr_1fr] p-5 md:p-8">
+        <div>
+          <h3 id="mTitle" class="font-display font-black text-white text-3xl md:text-4xl tracking-tight"></h3>
+          <p id="mDesc" class="mt-3 text-ice/85 leading-relaxed"></p>
+          <a id="mLink" href="#" target="_blank" rel="noopener" class="btn mt-6 inline-flex items-center gap-2 bg-white text-bp-deep px-5 py-3 font-mono text-xs uppercase tracking-widest font-bold hover:bg-mustard">[ Ver case no Behance ↗ ]</a>
+        </div>
+        <dl id="mSpecs" class="font-mono text-[11px] uppercase tracking-widest border border-white/15 divide-y divide-white/10 self-start"></dl>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* =====================================================================
+       EDITAR AQUI: projetos da galeria (todos vindos do Behance)
+       Cada projeto é um bloco { ... }:
+         titulo    → nome que aparece no card
+         categoria → "video", "fotografia" ou "design" (define o filtro)
+         id        → número do projeto no Behance (o que aparece em
+                     behance.net/embed/project/NUMERO no código incorporado)
+         slug      → final do link do projeto (behance.net/gallery/NUMERO/SLUG)
+         capa      → imagem de capa (está vindo do próprio Behance)
+       Para adicionar um projeto novo: copie um bloco, troque id, slug, título,
+       categoria e capa. A capa fica no código incorporado do Behance, ou
+       clique com o botão direito na capa do projeto > "Copiar endereço da imagem".
+    ===================================================================== */
+    const CAPA = path => `https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/${path}`;
+
+    const PROJETOS = [
+      { titulo: 'Portfólio Vídeo', categoria: 'video', id: '225976729', slug: 'Portfolio-Video',
+        capa: CAPA('6ad824225976729.Y3JvcCw4MzAsNjQ5LDAsNTE.png') },
+      { titulo: 'Intervale 2026', subtitulo: 'Fotografia Esportiva', categoria: 'fotografia', id: '256107641', slug: 'Intervale-2026-Fotografia-Esportiva',
+        capa: CAPA('b037fc256107641.Y3JvcCwzOTk5LDMxMjgsMCwxNDM1.jpg') },
+      { titulo: 'Integração dos Atletas', subtitulo: 'Social Media Design', categoria: 'design', id: '229836149', slug: 'Integracao-dos-Atletas-Social-Media-Design',
+        capa: CAPA('f1f82c229836149.Y3JvcCwxNDAwLDEwOTUsMCw4Ng.jpg') },
+      { titulo: 'Dando um rolê por Londres', categoria: 'fotografia', id: '224174345', slug: 'dando-um-role-por-londres',
+        capa: CAPA('0c56dc224174345.Y3JvcCwxMzAzLDEwMTksNDgsMTY4NA.png') },
+      { titulo: 'Campanha de Moda', subtitulo: 'Marca Fictícia', categoria: 'fotografia', id: '172555391', slug: 'Campanha-de-Moda-Marca-Ficticia',
+        capa: CAPA('14f812172555391.Y3JvcCw1MTEzLDQwMDAsNDQzLDA.jpg') },
+      { titulo: 'Uma câmera na mão e uma ideia na cabeça #001', categoria: 'fotografia', id: '157721555', slug: 'Uma-camera-na-mao-e-uma-ideia-na-cabeca-001',
+        capa: CAPA('792b3c157721555.Y3JvcCw0NDE4LDM0NTYsMzgyLDA.png') },
+      { titulo: 'Sítio Dona Lúcia', categoria: 'fotografia', id: '157051351', slug: 'Sitio-Dona-Lucia',
+        capa: CAPA('5677ac157051351.Y3JvcCwzNDU2LDI3MDMsMCwxMjQw.jpg') },
+      { titulo: 'Brigadeiros da Ana Júlia', categoria: 'fotografia', id: '145572501', slug: 'Brigadeiros-da-Ana-Julia',
+        capa: CAPA('f8e6f6145572501.Y3JvcCwxNDAwLDEwOTUsMCw1MDI.png') }
+    ];
+    /* ======================= fim da lista de projetos ======================= */
+
+    const NOMES = { video: 'Vídeo', fotografia: 'Fotografia', design: 'Design' };
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const linkDe = p => `https://www.behance.net/gallery/${p.id}/${p.slug}`;
+    const embedDe = p => `https://www.behance.net/embed/project/${p.id}?ilo0=1`;
+
+    // ---------- Monta a galeria ----------
+    const gallery = document.getElementById('gallery');
+    gallery.innerHTML = PROJETOS.map((p, i) => `
+      <button type="button" class="card reveal group" data-index="${i}" data-category="${p.categoria}" aria-label="Abrir projeto ${esc(p.titulo)}">
+        <div class="frame aspect-[808/632]">
+          <img src="${p.capa}" alt="${esc(p.titulo)}" loading="lazy" />
+          <span class="tint"></span>
+          <span class="focus tl"></span><span class="focus tr"></span><span class="focus bl"></span><span class="focus br"></span>
+          <span class="absolute left-3 top-3 font-mono text-[10px] tracking-widest text-white bg-bp-deep/70 px-2 py-1">FRAME ${String(i + 1).padStart(2, '0')}</span>
+          ${p.categoria === 'video' ? '<span class="absolute right-3 top-3 inline-flex items-center gap-1.5 font-mono text-[10px] tracking-widest text-white bg-bp-deep/70 px-2 py-1"><span class="rec-dot !w-1.5 !h-1.5"></span>VÍDEO</span>' : ''}
+          <div class="meta px-3 py-2.5 font-mono text-[10px] tracking-wider text-mustard uppercase truncate">Behance • ID ${p.id} • Abrir no monitor ▸</div>
+        </div>
+        <div class="pt-4">
+          <p class="font-mono text-[10px] uppercase tracking-[.25em] text-mustard">[ ${NOMES[p.categoria]} ]</p>
+          <h3 class="mt-2 font-display font-bold text-white text-2xl leading-tight tracking-tight group-hover:text-mustard transition-colors">${esc(p.titulo)}</h3>
+          ${p.subtitulo ? `<p class="mt-1.5 text-sm text-ice/75">${esc(p.subtitulo)}</p>` : ''}
+        </div>
+      </button>`).join('');
+
+    // ---------- Filtro ----------
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(btn => btn.addEventListener('click', () => {
+      const f = btn.dataset.filter;
+      filterBtns.forEach(b => b.setAttribute('aria-pressed', b === btn));
+      gallery.querySelectorAll('.card').forEach(c => {
+        const show = f === 'todos' || c.dataset.category === f;
+        c.classList.toggle('is-hidden', !show);
+        if (show) c.classList.add('is-visible');
+      });
+    }));
+
+    // ---------- Modal (monitor de referência com o embed do Behance) ----------
+    const modal = document.getElementById('modal');
+    const mMedia = document.getElementById('mMedia');
+    const mPrev = document.getElementById('mPrev'), mNext = document.getElementById('mNext'), mCounter = document.getElementById('mCounter');
+    let current = 0, lastFocus = null;
+
+    function renderModal() {
+      const p = PROJETOS[current];
+      document.getElementById('mCat').textContent = NOMES[p.categoria];
+      document.getElementById('mTitle').textContent = p.titulo;
+      document.getElementById('mDesc').textContent = p.subtitulo || 'Projeto completo publicado no Behance.';
+      document.getElementById('mLink').href = linkDe(p);
+      document.getElementById('mSpecs').innerHTML = [['CATEGORIA', NOMES[p.categoria]], ['PLATAFORMA', 'Behance'], ['PROJETO', '#' + p.id]]
+        .map(([k, v]) => `<div class="flex justify-between gap-4 px-4 py-3"><dt class="text-ice/50">${esc(k)}</dt><dd class="text-white text-right">${esc(v)}</dd></div>`).join('');
+      mMedia.innerHTML = `
+        <div class="w-full max-w-[808px] mx-auto p-4 md:p-8">
+          <div class="relative aspect-[404/316] w-full bg-bp-deep">
+            <iframe class="absolute inset-0 w-full h-full" src="${embedDe(p)}" title="${esc(p.titulo)} no Behance" loading="lazy"
+              allowfullscreen frameborder="0" scrolling="no" style="overflow:hidden" allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+        </div>`;
+      mCounter.textContent = `PROJETO ${String(current + 1).padStart(2, '0')}/${String(PROJETOS.length).padStart(2, '0')}`;
+    }
+    function openModal(i) {
+      current = i; lastFocus = document.activeElement;
+      renderModal();
+      const sh = document.getElementById('shutter');
+      sh.classList.remove('fire'); void sh.offsetWidth; if (!reduce) sh.classList.add('fire');
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('mClose').focus();
+    }
+    function closeModal() {
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(() => { if (!modal.classList.contains('open')) mMedia.innerHTML = ''; }, 500);
+      if (lastFocus) lastFocus.focus();
+    }
+    // Setas: passam para o projeto anterior/próximo (respeitando o filtro ativo)
+    function step(d) {
+      const visiveis = [...gallery.querySelectorAll('.card:not(.is-hidden)')].map(c => +c.dataset.index);
+      const pos = visiveis.indexOf(current);
+      current = visiveis[(pos + d + visiveis.length) % visiveis.length];
+      renderModal();
+    }
+    gallery.addEventListener('click', e => { const c = e.target.closest('.card'); if (c) openModal(+c.dataset.index); });
+    document.getElementById('mClose').addEventListener('click', closeModal);
+    mPrev.addEventListener('click', () => step(-1));
+    mNext.addEventListener('click', () => step(1));
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', e => {
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowRight') step(1);
+      if (e.key === 'ArrowLeft') step(-1);
+    });
+
+    // ---------- Timecode (24 fps) ----------
+    const tcEl = document.getElementById('timecode');
+    const t0 = performance.now();
+    const pad = n => String(n).padStart(2, '0');
+    let lastTc = '';
+
+    // ---------- Retícula + brilho dos "+" ----------
+    const reticle = document.getElementById('reticle'), coords = document.getElementById('coords');
+    const root = document.documentElement;
+    let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
+    addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse') return;
+      mx = e.clientX; my = e.clientY;
+      root.style.setProperty('--mx', mx + 'px'); root.style.setProperty('--my', my + 'px');
+      reticle.classList.add('on');
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => reticle.classList.remove('on'));
+
+    function tick(now) {
+      const fr = Math.floor((now - t0) / 1000 * 24);
+      const tc = `${pad(Math.floor(fr / 86400))}:${pad(Math.floor(fr / 1440) % 60)}:${pad(Math.floor(fr / 24) % 60)}:${pad(fr % 24)}`;
+      if (tc !== lastTc) { tcEl.textContent = tc; lastTc = tc; }
+      rx += (mx - rx) * 0.14; ry += (my - ry) * 0.14;
+      reticle.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
+      coords.textContent = `X ${String(Math.round(rx)).padStart(4, '0')} / Y ${String(Math.round(ry + scrollY)).padStart(4, '0')}`;
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    // ---------- Diagrama da lente desenhado pelo scroll ----------
+    const lensPaths = document.querySelectorAll('.lens-draw');
+    function drawLens() {
+      const p = reduce ? 1 : Math.min(1, 0.22 + scrollY / (innerHeight * 0.7));
+      lensPaths.forEach((el, i) => {
+        const local = Math.max(0, Math.min(1, p * 1.25 - i * 0.02));
+        el.style.strokeDashoffset = 1 - local;
+      });
+    }
+    drawLens();
+    addEventListener('scroll', drawLens, { passive: true });
+
+    // ---------- Entrada ao rolar ----------
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // ---------- Navegação: destaca a seção atual ----------
+    const navLinks = [...document.querySelectorAll('.hud-nav a[href^="#"]')];
+    const navIo = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    ['inicio', 'portfolio', 'sobre', 'contato'].forEach(id => navIo.observe(document.getElementById(id)));
+
+    // ---------- Claquete ----------
+    const d = new Date();
+    document.getElementById('slateDate').textContent = `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()}`;
+    const arm = document.querySelector('.clap-arm');
+    const snap = () => { arm.classList.remove('snap'); void arm.offsetWidth; arm.classList.add('snap'); };
+    document.getElementById('clapper').addEventListener('click', e => { if (!e.target.closest('a,button')) snap(); });
+    const clapIo = new IntersectionObserver(([e]) => { if (e.isIntersecting && !reduce) { setTimeout(snap, 500); clapIo.disconnect(); } }, { threshold: .5 });
+    clapIo.observe(document.getElementById('clapper'));
+
+    // Se alguma imagem falhar, esconde no lugar de mostrar ícone quebrado
+    document.addEventListener('error', e => { if (e.target.tagName === 'IMG') e.target.style.visibility = 'hidden'; }, true);
+  </script>
+</body>
+</html>
