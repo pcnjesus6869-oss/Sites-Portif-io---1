@@ -258,6 +258,9 @@
         <p class="reveal mt-6 font-mono text-[11px] sm:text-xs md:text-sm uppercase tracking-[.12em] sm:tracking-[.25em] text-white whitespace-nowrap">
           Vídeo <span class="text-mustard">|</span> Fotografia <span class="text-mustard">|</span> Social Media
         </p>
+        <p class="reveal mt-4 font-display font-bold text-2xl md:text-3xl text-white tracking-tight">
+          Gabriela Kaufmann<span class="title-dot">.</span>
+        </p>
 
         <div class="reveal mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 font-mono text-xs uppercase tracking-widest">
           <a href="#portfolio"
@@ -286,7 +289,6 @@
 
           <div class="reveal flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-widest" role="group" aria-label="Filtrar projetos">
             <button class="filter-btn border border-white/25 px-3 py-2 text-white hover:border-mustard" data-filter="todos" aria-pressed="true">[ Todos ]</button>
-            <button class="filter-btn border border-white/25 px-3 py-2 text-white hover:border-mustard" data-filter="video" aria-pressed="false">[ Vídeo ]</button>
             <button class="filter-btn border border-white/25 px-3 py-2 text-white hover:border-mustard" data-filter="fotografia" aria-pressed="false">[ Fotografia ]</button>
             <button class="filter-btn border border-white/25 px-3 py-2 text-white hover:border-mustard" data-filter="design" aria-pressed="false">[ Design ]</button>
           </div>
@@ -322,7 +324,7 @@
             <div class="absolute -top-3 left-8 bg-bp-navy px-2 font-mono text-[11px] uppercase tracking-[.3em] text-mustard">Apresentação</div>
 
             <p class="font-mono text-[11px] uppercase tracking-widest leading-relaxed text-ice/70">
-              <span class="text-white">Gabriela Kaufmann</span> · Videomaker · Editora · Fotógrafa
+              <span class="text-white">Gabriela Kaufmann</span> · Videomaker · Fotógrafa
             </p>
             <h3 class="mt-6 font-display font-black text-5xl md:text-6xl lg:text-7xl leading-[.95] text-white tracking-tight">
               Oi! Eu sou a <em class="text-mustard">Gabi</em><span class="title-dot">.</span>
@@ -471,8 +473,6 @@
     const CAPA = path => `https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/${path}`;
 
     const PROJETOS = [
-      { titulo: 'Portfólio Vídeo', categoria: 'video', id: '225976729', slug: 'Portfolio-Video',
-        capa: CAPA('6ad824225976729.Y3JvcCw4MzAsNjQ5LDAsNTE.png') },
       { titulo: 'Intervale 2026', subtitulo: 'Fotografia Esportiva', categoria: 'fotografia', id: '256107641', slug: 'Intervale-2026-Fotografia-Esportiva',
         capa: CAPA('b037fc256107641.Y3JvcCwzOTk5LDMxMjgsMCwxNDM1.jpg') },
       { titulo: 'Integração dos Atletas', subtitulo: 'Social Media Design', categoria: 'design', id: '229836149', slug: 'Integracao-dos-Atletas-Social-Media-Design',
