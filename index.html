@@ -243,8 +243,8 @@
               <ellipse class="ring-draw" pathLength="1" cx="500" cy="200" rx="480" ry="92" stroke="#F4C430" stroke-width="2.2"/>
             </g>
           </svg>
-          <h1 class="relative font-display font-black text-white leading-[.9] tracking-[-0.035em] text-[clamp(4.2rem,19vw,14rem)]" style="z-index:1; font-variation-settings:'opsz' 144;">
-            Portfólio<span class="title-dot">.</span>
+          <h1 class="relative font-display font-black text-white leading-[.92] tracking-[-0.035em] text-[17vw] sm:text-[clamp(3.5rem,9vw,9rem)] sm:whitespace-nowrap" style="z-index:1; font-variation-settings:'opsz' 144;">
+            Gabriela<br class="sm:hidden" /> Kaufmann<span class="title-dot">.</span>
           </h1>
           <svg class="pointer-events-none absolute left-1/2 top-1/2 w-[118%] -translate-x-1/2 -translate-y-1/2 overflow-visible" viewBox="0 0 1000 400" fill="none" aria-hidden="true" style="z-index:2">
             <g transform="rotate(-22 500 200)">
@@ -257,9 +257,6 @@
 
         <p class="reveal mt-6 font-mono text-[11px] sm:text-xs md:text-sm uppercase tracking-[.12em] sm:tracking-[.25em] text-white whitespace-nowrap">
           Vídeo <span class="text-mustard">|</span> Fotografia <span class="text-mustard">|</span> Social Media
-        </p>
-        <p class="reveal mt-4 font-display font-bold text-2xl md:text-3xl text-white tracking-tight">
-          Gabriela Kaufmann<span class="title-dot">.</span>
         </p>
 
         <div class="reveal mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 font-mono text-xs uppercase tracking-widest">
@@ -289,6 +286,7 @@
 
           <div class="reveal flex flex-wrap gap-2 font-mono text-[11px] uppercase tracking-widest" role="group" aria-label="Filtrar projetos">
             <button class="filter-btn border border-white/25 px-3 py-2 text-white hover:border-mustard" data-filter="todos" aria-pressed="true">[ Todos ]</button>
+            <button class="filter-btn border border-white/25 px-3 py-2 text-white hover:border-mustard" data-filter="video" aria-pressed="false">[ Vídeo ]</button>
             <button class="filter-btn border border-white/25 px-3 py-2 text-white hover:border-mustard" data-filter="fotografia" aria-pressed="false">[ Fotografia ]</button>
             <button class="filter-btn border border-white/25 px-3 py-2 text-white hover:border-mustard" data-filter="design" aria-pressed="false">[ Design ]</button>
           </div>
@@ -458,31 +456,49 @@
 
   <script>
     /* =====================================================================
-       EDITAR AQUI: projetos da galeria (todos vindos do Behance)
-       Cada projeto é um bloco { ... }:
-         titulo    → nome que aparece no card
-         categoria → "video", "fotografia" ou "design" (define o filtro)
-         id        → número do projeto no Behance (o que aparece em
-                     behance.net/embed/project/NUMERO no código incorporado)
-         slug      → final do link do projeto (behance.net/gallery/NUMERO/SLUG)
-         capa      → imagem de capa (está vindo do próprio Behance)
-       Para adicionar um projeto novo: copie um bloco, troque id, slug, título,
-       categoria e capa. A capa fica no código incorporado do Behance, ou
-       clique com o botão direito na capa do projeto > "Copiar endereço da imagem".
+       EDITAR AQUI: projetos da galeria
+       Cada projeto é um bloco { ... }. A ordem da lista é a ordem no site.
+
+       PROJETO DO BEHANCE (fotografia / design):
+         { titulo, subtitulo (opcional), categoria: 'fotografia' ou 'design',
+           id: número do projeto, slug: final do link, capa: CAPA('...') }
+
+       VÍDEO DO VIMEO:
+         { titulo, subtitulo, categoria: 'video', plataforma: 'vimeo',
+           id: número do vídeo (vimeo.com/NUMERO), capa: 'img/videos/arquivo.jpg' }
+
+       VÍDEO DO INSTAGRAM (post ou reel):
+         { titulo, subtitulo, categoria: 'video', plataforma: 'instagram',
+           id: código do post (instagram.com/p/CODIGO ou /reel/CODIGO),
+           capa: 'img/videos/arquivo.jpg' }
+
+       As capas dos vídeos ficam na pasta img/videos (envie a imagem para lá).
     ===================================================================== */
     const CAPA = path => `https://mir-s3-cdn-cf.behance.net/projects/max_808_webp/${path}`;
 
     const PROJETOS = [
+      { titulo: 'Vídeo Entrevista', subtitulo: 'Gabriela Kaufmann', categoria: 'video', plataforma: 'vimeo', id: '1192421006',
+        capa: 'img/videos/vimeo-1192421006.jpg' },
       { titulo: 'Intervale 2026', subtitulo: 'Fotografia Esportiva', categoria: 'fotografia', id: '256107641', slug: 'Intervale-2026-Fotografia-Esportiva',
         capa: CAPA('b037fc256107641.Y3JvcCwzOTk5LDMxMjgsMCwxNDM1.jpg') },
+      { titulo: 'Fastbuilt 8 anos', subtitulo: 'Celebração · Instagram', categoria: 'video', plataforma: 'instagram', id: 'DeR6Bhksz6D',
+        capa: 'img/videos/ig-DeR6Bhksz6D.jpg' },
       { titulo: 'Integração dos Atletas', subtitulo: 'Social Media Design', categoria: 'design', id: '229836149', slug: 'Integracao-dos-Atletas-Social-Media-Design',
         capa: CAPA('f1f82c229836149.Y3JvcCwxNDAwLDEwOTUsMCw4Ng.jpg') },
+      { titulo: 'Pousada Maunaloa', subtitulo: 'Café da manhã', categoria: 'video', plataforma: 'vimeo', id: '1249313162',
+        capa: 'img/videos/vimeo-1249313162.jpg' },
       { titulo: 'Dando um rolê por Londres', categoria: 'fotografia', id: '224174345', slug: 'dando-um-role-por-londres',
         capa: CAPA('0c56dc224174345.Y3JvcCwxMzAzLDEwMTksNDgsMTY4NA.png') },
+      { titulo: 'AI Executive Day', subtitulo: 'Fastbuilt · AWS São Paulo', categoria: 'video', plataforma: 'instagram', id: 'DdrYy2hkWs-',
+        capa: 'img/videos/ig-DdrYy2hkWs-.jpg' },
       { titulo: 'Campanha de Moda', subtitulo: 'Marca Fictícia', categoria: 'fotografia', id: '172555391', slug: 'Campanha-de-Moda-Marca-Ficticia',
         capa: CAPA('14f812172555391.Y3JvcCw1MTEzLDQwMDAsNDQzLDA.jpg') },
+      { titulo: 'Inovação precisa ser disruptiva?', subtitulo: 'Fastbuilt · Instagram', categoria: 'video', plataforma: 'instagram', id: 'DayQb6COix3',
+        capa: 'img/videos/ig-DayQb6COix3.jpg' },
       { titulo: 'Uma câmera na mão e uma ideia na cabeça #001', categoria: 'fotografia', id: '157721555', slug: 'Uma-camera-na-mao-e-uma-ideia-na-cabeca-001',
         capa: CAPA('792b3c157721555.Y3JvcCw0NDE4LDM0NTYsMzgyLDA.png') },
+      { titulo: 'Espaço Isorropia', subtitulo: 'Vídeo de apresentação', categoria: 'video', plataforma: 'instagram', id: 'C40kPtaLcg3',
+        capa: 'img/videos/ig-C40kPtaLcg3.jpg' },
       { titulo: 'Sítio Dona Lúcia', categoria: 'fotografia', id: '157051351', slug: 'Sitio-Dona-Lucia',
         capa: CAPA('5677ac157051351.Y3JvcCwzNDU2LDI3MDMsMCwxMjQw.jpg') },
       { titulo: 'Brigadeiros da Ana Júlia', categoria: 'fotografia', id: '145572501', slug: 'Brigadeiros-da-Ana-Julia',
@@ -491,26 +507,44 @@
     /* ======================= fim da lista de projetos ======================= */
 
     const NOMES = { video: 'Vídeo', fotografia: 'Fotografia', design: 'Design' };
+    const PLATAFORMAS = { behance: 'Behance', vimeo: 'Vimeo', instagram: 'Instagram' };
     const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const linkDe = p => `https://www.behance.net/gallery/${p.id}/${p.slug}`;
-    const embedDe = p => `https://www.behance.net/embed/project/${p.id}?ilo0=1`;
+    const plat = p => p.plataforma || 'behance';
+    const linkDe = p => ({
+      vimeo: `https://vimeo.com/${p.id}`,
+      instagram: `https://www.instagram.com/p/${p.id}/`,
+      behance: `https://www.behance.net/gallery/${p.id}/${p.slug}`
+    })[plat(p)];
 
     // ---------- Monta a galeria ----------
     const gallery = document.getElementById('gallery');
-    gallery.innerHTML = PROJETOS.map((p, i) => `
+    gallery.innerHTML = PROJETOS.map((p, i) => {
+      const isVideo = p.categoria === 'video';
+      // Vídeos são verticais: a capa aparece inteira no centro, com ela mesma desfocada ao fundo
+      const capa = isVideo
+        ? `<img src="${p.capa}" alt="" aria-hidden="true" loading="lazy" class="absolute inset-0 scale-110 blur-xl opacity-50" />
+           <img src="${p.capa}" alt="${esc(p.titulo)}" loading="lazy" class="vthumb relative !w-auto !h-full mx-auto !object-contain" />
+           <span class="pointer-events-none absolute inset-0 flex items-center justify-center">
+             <span class="w-14 h-14 rounded-full bg-bp-deep/70 border border-white/40 backdrop-blur flex items-center justify-center text-white group-hover:bg-mustard group-hover:text-bp-deep group-hover:border-mustard transition-colors">
+               <svg class="w-5 h-5 ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+             </span>
+           </span>`
+        : `<img src="${p.capa}" alt="${esc(p.titulo)}" loading="lazy" />`;
+      return `
       <button type="button" class="card reveal group" data-index="${i}" data-category="${p.categoria}" aria-label="Abrir projeto ${esc(p.titulo)}">
         <div class="frame aspect-[808/632]">
-          <img src="${p.capa}" alt="${esc(p.titulo)}" loading="lazy" />
+          ${capa}
           <span class="focus tl"></span><span class="focus tr"></span><span class="focus bl"></span><span class="focus br"></span>
-          <div class="meta px-3 py-2.5 font-mono text-[10px] tracking-wider text-mustard uppercase truncate">Behance • ID ${p.id} • Abrir no monitor ▸</div>
+          <div class="meta px-3 py-2.5 font-mono text-[10px] tracking-wider text-mustard uppercase truncate">${PLATAFORMAS[plat(p)]} • ${isVideo ? 'Assistir no monitor ▸' : 'Abrir no monitor ▸'}</div>
         </div>
         <div class="pt-4">
           <p class="font-mono text-[10px] uppercase tracking-[.25em] text-mustard">[ ${NOMES[p.categoria]} ]</p>
           <h3 class="mt-2 font-display font-bold text-white text-2xl leading-tight tracking-tight group-hover:text-mustard transition-colors">${esc(p.titulo)}</h3>
           ${p.subtitulo ? `<p class="mt-1.5 text-sm text-ice/75">${esc(p.subtitulo)}</p>` : ''}
         </div>
-      </button>`).join('');
+      </button>`;
+    }).join('');
 
     // ---------- Filtro ----------
     const filterBtns = document.querySelectorAll('.filter-btn');
@@ -524,27 +558,45 @@
       });
     }));
 
-    // ---------- Modal (monitor de referência com o embed do Behance) ----------
+    // ---------- Modal (monitor: Behance, Vimeo ou Instagram) ----------
     const modal = document.getElementById('modal');
     const mMedia = document.getElementById('mMedia');
     const mPrev = document.getElementById('mPrev'), mNext = document.getElementById('mNext'), mCounter = document.getElementById('mCounter');
     let current = 0, lastFocus = null;
 
+    function playerDe(p) {
+      const t = esc(p.titulo);
+      if (plat(p) === 'vimeo') {
+        return `<div class="mx-auto py-4 md:py-8" style="width:min(100%, calc(70svh * 9 / 16))">
+          <div class="relative aspect-[9/16] w-full bg-black">
+            <iframe class="absolute inset-0 w-full h-full" src="https://player.vimeo.com/video/${p.id}?autoplay=1&title=0&byline=0&portrait=0&dnt=1" title="${t}"
+              frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+          </div></div>`;
+      }
+      if (plat(p) === 'instagram') {
+        return `<div class="mx-auto w-full max-w-[400px] py-4 md:py-6">
+          <iframe class="w-full bg-white" style="height:min(76svh, 720px)" src="https://www.instagram.com/p/${p.id}/embed/" title="${t}"
+            frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; encrypted-media; fullscreen"></iframe></div>`;
+      }
+      return `<div class="w-full max-w-[808px] mx-auto p-4 md:p-8">
+          <div class="relative aspect-[404/316] w-full bg-bp-deep">
+            <iframe class="absolute inset-0 w-full h-full" src="https://www.behance.net/embed/project/${p.id}?ilo0=1" title="${t} no Behance" loading="lazy"
+              allowfullscreen frameborder="0" scrolling="no" style="overflow:hidden" allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div></div>`;
+    }
+
     function renderModal() {
       const p = PROJETOS[current];
+      const nomePlat = PLATAFORMAS[plat(p)];
       document.getElementById('mCat').textContent = NOMES[p.categoria];
       document.getElementById('mTitle').textContent = p.titulo;
-      document.getElementById('mDesc').textContent = p.subtitulo || 'Projeto completo publicado no Behance.';
-      document.getElementById('mLink').href = linkDe(p);
-      document.getElementById('mSpecs').innerHTML = [['CATEGORIA', NOMES[p.categoria]], ['PLATAFORMA', 'Behance'], ['PROJETO', '#' + p.id]]
+      document.getElementById('mDesc').textContent = p.subtitulo || `Projeto completo publicado no ${nomePlat}.`;
+      const link = document.getElementById('mLink');
+      link.href = linkDe(p);
+      link.textContent = `[ Ver no ${nomePlat} ↗ ]`;
+      document.getElementById('mSpecs').innerHTML = [['CATEGORIA', NOMES[p.categoria]], ['PLATAFORMA', nomePlat]]
         .map(([k, v]) => `<div class="flex justify-between gap-4 px-4 py-3"><dt class="text-ice/50">${esc(k)}</dt><dd class="text-white text-right">${esc(v)}</dd></div>`).join('');
-      mMedia.innerHTML = `
-        <div class="w-full max-w-[808px] mx-auto p-4 md:p-8">
-          <div class="relative aspect-[404/316] w-full bg-bp-deep">
-            <iframe class="absolute inset-0 w-full h-full" src="${embedDe(p)}" title="${esc(p.titulo)} no Behance" loading="lazy"
-              allowfullscreen frameborder="0" scrolling="no" style="overflow:hidden" allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>
-          </div>
-        </div>`;
+      mMedia.innerHTML = playerDe(p);
       mCounter.textContent = `PROJETO ${String(current + 1).padStart(2, '0')}/${String(PROJETOS.length).padStart(2, '0')}`;
     }
     function openModal(i) {
